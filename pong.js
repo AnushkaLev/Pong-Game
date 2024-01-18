@@ -139,3 +139,14 @@ function detectCollision(a, b) {
            a.y < b.y + b.height && //a top-left corner doesn't exceed b bottom-left corner 
            a.y + a.height > b.y; //a bottom-left corner does exceed b top-left corner 
 }
+
+function resetGame(direction) {
+    ball = {
+        x : boardWidth/2,
+        y : boardHeight/2,
+        width: ballWidth,
+        height: ballHeight,
+        velocityX : direction,
+        velocityY : 2
+    }
+}
