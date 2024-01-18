@@ -1,11 +1,11 @@
 let board;
 let boardWidth = 500;
-let boardHeight = 500;
+let boardHeight = window.innerHeight - 30;
 let context;
 
 let playerWidth = 10;
 let playerHeight = 50;
-let playerVelocityY = 0;
+let playerVelocityY = 3;
 
 let ballWidth = 10;
 let ballHeight = 10;
@@ -36,8 +36,8 @@ let ball = {
     y : boardHeight/2,
     width : ballWidth,
     height : ballHeight,
-    velocityX : 1,
-    velocityY : 2
+    velocityX : 3,
+    velocityY : 4
 }
 
 window.onload = function() {
@@ -105,9 +105,7 @@ function update() {
     context.fillText(player1Score, boardWidth/5, 45);
     context.fillText(player2Score, boardWidth*4/5 - 45, 45);
 
-    for (let i = 10; i < board.height; i += 25) { 
-        context.fillRect(board.width / 2 - 10, i, 5, 5); 
-    }
+    context.fillRect(board.width / 2 - 1, 0, 2, board.height);
 
     document.addEventListener("keydown", movePlayer);
     document.addEventListener("keyup", stopPlayer);
@@ -123,18 +121,18 @@ function outOfBounds(yPostion) {
 
 function movePlayer(e) {
   if (e.code == "KeyW") {
-      player1.velocityY = -3;
+      player1.velocityY = -5;
   }
   else if (e.code == "KeyS") {
-      player1.velocityY = 3;
+      player1.velocityY = 5;
   }
   
 
   if (e.code == "ArrowUp") {
-      player2.velocityY = -3;
+      player2.velocityY = -5;
   }
   else if (e.code == "ArrowDown") {
-      player2.velocityY = 3;
+      player2.velocityY = 5;
   }
 }
 
@@ -161,7 +159,7 @@ function resetGame(direction) {
         y : boardHeight/2,
         width: ballWidth,
         height: ballHeight,
-        velocityX : direction,
-        velocityY : 2
+        velocityX : direction * 3,
+        velocityY : 4
     }
 }
