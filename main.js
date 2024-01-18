@@ -19,7 +19,7 @@ let player1 = {
     y : boardHeight/2,
     width : playerWidth,
     height : playerHeight,
-    velocityY : playerVelocityY
+    velocityY : 0
 
 }
 
@@ -28,7 +28,7 @@ let player2 = {
     y : boardHeight/2,
     width : playerWidth,
     height : playerHeight,
-    velocityY : playerVelocityY
+    velocityY : 0
 }
 
 let ball = {
@@ -47,7 +47,7 @@ window.onload = function() {
     context = board.getContext("2d");
 
     context.fillStyle = "skyblue";
-    context.fillRect(player1.x, player1.y, player1.width, player1.height);
+    context.fillRect(player1.x, player1.y, playerWidth, playerHeight);
 
     requestAnimationFrame(update)
     document.addEventListener("keyup", movePlayer);
@@ -62,17 +62,19 @@ function update() {
     if(!outOfBounds(nextPlayer1Y)) {
         player1.y = nextPlayer1Y;
     }
-    context.fillRect(player1.x, player1.y, player1.width, player1.height);
+    context.fillRect(player1.x, player1.y, playerWidth, playerHeight);
 
     let nextPlayer2Y = player2.y + player2.velocityY;   
     if(!outOfBounds(nextPlayer2Y)) {
         player2.y = nextPlayer2Y;
-    }    context.fillRect(player2.x, player2.y, player2.width, player2.height);
+    }    
+    
+    context.fillRect(player2.x, player2.y, playerWidth, playerHeight);
 
     context.fillStyle = "white";
     ball.x += ball.velocityX;
     ball.y += ball.velocityY;
-    context.fillRect(ball.x, ball.y, ball.width, ball.height);
+    context.fillRect(ball.x, ball.y, ballWidth, ballHeight);
 
     //ball.y is top left corner silly --> to reverse direction if ball hits bounds
     if (ball.y <= 0 || ball.y + ball.height >= boardHeight) {
