@@ -10,6 +10,9 @@ let playerVelocityY = 0;
 let ballWidth = 10;
 let ballHeight = 10;
 
+let player1Score = 0;
+let player2Score = 0;
+
 
 let player1 = {
     x : 10,
@@ -85,6 +88,23 @@ function update() {
         if (ball.x + ballWidth >= player2.x) {
             ball.velocityX *= -1;
         }
+    }
+
+    if (ball.x < 0) {
+        player2Score++;
+        resetGame(1);
+    }
+    else if (ball.x + ballWidth > boardWidth) {
+        player1Score++;
+        resetGame(-1);
+    }
+
+    context.font = "45px Georgia";
+    context.fillText(player1Score, boardWidth/5, 45);
+    context.fillText(player2Score, boardWidth*4/5 - 45, 45);
+
+    for (let i = 10; i < board.height; i += 25) { 
+        context.fillRect(board.width / 2 - 10, i, 5, 5); 
     }
 }
 
