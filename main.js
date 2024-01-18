@@ -5,7 +5,7 @@ let context;
 
 let playerWidth = 10;
 let playerHeight = 50;
-let playerVelocityY = 3;
+let playerVelocityY = 7;
 
 let ballWidth = 10;
 let ballHeight = 10;
@@ -71,6 +71,14 @@ function update() {
     
     context.fillRect(player2.x, player2.y, playerWidth, playerHeight);
 
+    if (ball.x - ball.width <= player1.x + player1.width && ball.y >= player1.y && ball.y <= player1.y + player1.height) {
+      ball.velocityX = Math.floor(Math.random() * 5) + 3; // Random speed between 2 and 5
+  }
+  
+  if (ball.x + ball.width >= player2.x && ball.y >= player2.y && ball.y <= player2.y + player2.height) {
+      ball.velocityX = -(Math.floor(Math.random() * 5) + 3); // Random speed between 2 and 5
+  }
+
     context.fillStyle = "white";
     ball.x += ball.velocityX;
     ball.y += ball.velocityY;
@@ -121,18 +129,18 @@ function outOfBounds(yPostion) {
 
 function movePlayer(e) {
   if (e.code == "KeyW") {
-      player1.velocityY = -5;
+      player1.velocityY = -7;
   }
   else if (e.code == "KeyS") {
-      player1.velocityY = 5;
+      player1.velocityY = 7;
   }
   
 
   if (e.code == "ArrowUp") {
-      player2.velocityY = -5;
+      player2.velocityY = -7;
   }
   else if (e.code == "ArrowDown") {
-      player2.velocityY = 5;
+      player2.velocityY = 7;
   }
 }
 
